@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_prod
+    restart: always
+    environment:
+      POSTGRES_DB: mydatabase_dev
+      POSTGRES_USER: SA
+      POSTGRES_PASSWORD: Pi3141592654!
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
+
