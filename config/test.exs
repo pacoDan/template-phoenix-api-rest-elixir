@@ -6,10 +6,10 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :rextremElixir, RextremElixir.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "SA",
+  password: "Pi3141592654!",
   hostname: "localhost",
-  database: "rextremelixir_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "mydatabase_dev#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 

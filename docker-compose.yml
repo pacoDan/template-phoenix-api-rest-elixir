@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_prod
+    restart: always
+    environment:
+      POSTGRES_DB: mydatabase_dev
+      POSTGRES_USER: SA
+      POSTGRES_PASSWORD: Pi3141592654!
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  phoenix:
+    build: .
+    container_name: phoenix_app
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      - MIX_ENV=prod
+      - DATABASE_URL=ecto://SA:Pi3141592654!@db/mydatabase_dev
+      - SECRET_KEY_BASE=JwgEh9Q8gKEoBbloDDjJujveauq+TSub0KtyGngTxjfor+wdjT85IpZf48nusuC4
+    command: mix phx.server
+
+volumes:
+  pgdata:

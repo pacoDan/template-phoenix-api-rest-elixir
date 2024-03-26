@@ -37,3 +37,18 @@ Start your Phoenix app with:
 You can also run your app inside IEx (Interactive Elixir) as:
 
     $ iex -S mix phx.server
+
+
+
+--------------
+
+❯ docker-compose up
+
+
+
+--------------
+para produccion 
+
+Para generar una clave secreta, puedes ejecutar el siguiente comando en tu terminal:
+
+    $ mix phx.gen.secret
