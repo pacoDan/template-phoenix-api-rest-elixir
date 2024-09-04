@@ -43,7 +43,7 @@ You can also run your app inside IEx (Interactive Elixir) as:
 --------------
 
 ❯ docker-compose up
-
+docker compose down --rmi local --volumes --remove-orphans
 
 
 --------------
