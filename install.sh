@@ -1,1 +1,1 @@
-docker-compose -f run-postgre.yml up
+docker-compose -f run-postgre.yml up -d

@@ -1,3 +1,25 @@
+instalacion de dependencias:
+```sh
+mix deps.get  ## Este comando descargará e instalará todas las dependencias que están listadas en el archivo mix.exs.
+```
+```sh
+mix deps.compile
+```
+Crear y migrar la base de datos:
+```sh
+mix ecto.create
+mix ecto.migrate
+```
+Levantar el servidor:
+```sh
+mix phx.server
+```
+verificar conexion a la base de datos:
+```sh
+mix ecto.ping
+```
+---
+
 # RextremElixir
 
 To start your Phoenix server:
