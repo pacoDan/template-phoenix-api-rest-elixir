@@ -1,45 +1,37 @@
-# RextremElixir
-
-To start your Phoenix server:
-
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
-
-- creacion
-mix phx.new rextremElixir
-
-We are almost there! The following steps are missing:
-
-    $ cd rextremElixir
-
-code .
-
-hen configure your database in config/dev.exs and run:
-
-    $ mix ecto.create
-
-Start your Phoenix app with:
-
-    $ mix phx.server
-
+Esto generará un nuevo proyecto Phoenix sin las configuraciones y dependencias relacionadas con Ecto:
+```sh
+mix phx.new nombre_del_proyecto --no-ecto
+```
+Once we have Elixir and Erlang, we are ready to install the Phoenix application generator:
+```sh
+mix archive.install hex phx_new
+```
+```sh
+mix phx.new file_sync --no-ecto
+cd file_sync
+mix deps.get # instalo dependencias
+mix phx.server # inicio el servidor / ejecutar la aplicacion
+```
+actualizar proyecto
+```sh
+mix deps.clean --all
+mix deps.get
+```
+mostrar proyecto:
+```sh
+tree -I '_build|deps'
+```
+mostra PID del container
+```sh
+docker inspect -f '{{.State.Pid}}' postgres_prod # postgres_prod es nombre_container
+```
 You can also run your app inside IEx (Interactive Elixir) as:
 
     $ iex -S mix phx.server
 
 
-
+ejecyrar tests
+mix test
 --------------
 
 ❯ docker-compose up
