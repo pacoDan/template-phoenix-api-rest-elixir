@@ -18,6 +18,10 @@ verificar conexion a la base de datos:
 ```sh
 mix ecto.ping
 ```
+saber PID del contenedor para poder matarlo cuando esta de forma corrupta:
+```sh
+docker inspect -f '{{.State.Pid}}' postgres_prod
+```
 ---
 
 # RextremElixir
