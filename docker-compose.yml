@@ -11,7 +11,17 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
   phoenix:
     build: .
     container_name: phoenix_app
@@ -25,6 +35,14 @@ services:
       - DATABASE_URL=ecto://SA:Pi3141592654!@db/mydatabase_dev
       - SECRET_KEY_BASE=JwgEh9Q8gKEoBbloDDjJujveauq+TSub0KtyGngTxjfor+wdjT85IpZf48nusuC4
     command: mix phx.server
-
+  # ngrok:
+  #   image: ngrok/ngrok
+  #   container_name: ngrok
+  #   restart: always
+  #   environment:
+  #     NGROK_AUTHTOKEN: 2G4xo9bF8weamzf8IP90qsyvDJY_4B4SkUp9V1nfjfptUArXK # Reemplaza <token> con tu token de autenticación de ngrok
+  #   command: http http://localhost:8080 #http 4000
+  #   depends_on:
+  #     - phoenix
 volumes:
   pgdata:

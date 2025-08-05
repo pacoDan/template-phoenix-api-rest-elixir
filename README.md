@@ -33,10 +33,12 @@ You can also run your app inside IEx (Interactive Elixir) as:
 ejecyrar tests
 mix test
 --------------
-
-❯ docker-compose up
+eliminar imagenes creadas por este compose:
+```sh
+docker-compose down --rmi all
+```
+❯ docker-compose up --build
 docker compose down --rmi local --volumes --remove-orphans
-
 
 --------------
 para produccion 
@@ -44,3 +46,6 @@ para produccion
 Para generar una clave secreta, puedes ejecutar el siguiente comando en tu terminal:
 
     $ mix phx.gen.secret
+
+
+ver mix phx.digest
