@@ -1,3 +1,8 @@
+para exponer con ngrok(previamente corriendo al db):
+```sh
+terraform apply
+docker logs ngrok-tunnel
+```
 Esto generará un nuevo proyecto Phoenix sin las configuraciones y dependencias relacionadas con Ecto:
 ```sh
 mix phx.new nombre_del_proyecto --no-ecto

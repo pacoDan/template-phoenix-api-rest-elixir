@@ -1,24 +1,35 @@
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
-  keep_locally = false
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0.1"
+    }
+  }
 }
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.image_id
-  name  = "nginx-proxy"
+provider "docker" {}
 
-  ports {
-    internal = 80
-    external = 80
-  }
+resource "docker_container" "ngrok" {
+  image = "ngrok/ngrok:latest"
+  name  = "ngrok-tunnel"
 
-  # Montar el archivo de configuración local
-  volumes {
-    host_path      = "${path.module}/nginx.conf"
-    container_path = "/etc/nginx/conf.d/default.conf"
-    read_only      = true
-  }
-
-  # Si usas Linux y quieres acceder a localhost del host:
+  # Conecta el contenedor a la red del host (solo Linux)
   network_mode = "host"
+
+  # Variables de entorno para ngrok
+  env = [
+    "NGROK_AUTHTOKEN=${var.ngrok_authtoken}"
+  ]
+
+  # Comando corregido para exponer el puerto 4000
+  command = [
+    "http",
+    "4000",  # Solo el puerto cuando se usa network_mode=host
+    "--log=stdout"
+  ]
+}
+
+variable "ngrok_authtoken" {
+  description = "Tu authtoken de ngrok"
+  type        = string
 }
