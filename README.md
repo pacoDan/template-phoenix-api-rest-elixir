@@ -35,7 +35,7 @@ mix test
 --------------
 eliminar imagenes creadas por este compose:
 ```sh
-docker-compose down --rmi all
+docker-compose down --rmi all --volumes --remove-orphans 
 ```
 ❯ docker-compose up --build
 docker compose down --rmi local --volumes --remove-orphans
